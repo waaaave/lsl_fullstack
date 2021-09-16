@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>首页</title>
+</head>
+
+<body>
+    <h1>希望服务器推送消息给我</h1>
+    <script>
+        // html5 原生支持 WebSocket 协议
+        var ws = new WebSocket('ws://localhost:8080');
+        // onopen 事件 open 连接
+        ws.onopen = function () {
+            console.log('ws onopen');
+            ws.send('from clent:hello');
+        }
+        ws.onmessage = function (e) {
+            console.log('ws onmessage');
+            console.log('form server:' + e.data);
+        }
+    </script>
+</body>
+
+</html>
